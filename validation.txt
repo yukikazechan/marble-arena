@@ -1,0 +1,15 @@
+✔ deterministic replay and bounded battle (64.044344ms)
+✔ collision damage and mass response (0.31469ms)
+✔ armor reduces incoming damage (0.21832ms)
+✔ each skill runs without NaN and projectile/hook/fire/heal events occur (59.596705ms)
+✔ reject invalid/unsafe imports (3.915989ms)
+✔ JSON round trip and zero seed (0.49636ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 258.409837
+PASS: load, battle, pause, speed, custom fighter, invalid/valid JSON import, persistence, SVG upload, mobile overflow, sound/camera controls; no JS errors
