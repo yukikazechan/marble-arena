@@ -1,2 +1,41 @@
-# marble-arena
-Marble Arena: static physics battle simulator
+# 碰撞实验室 / Marble Arena
+
+独立中文响应式弹珠自动战斗模拟器，原创数值与技能。无 npm 依赖、无 CDN、无后端。
+
+## 运行
+
+在项目目录运行：
+
+```sh
+python -m http.server 8765 --bind 0.0.0.0
+```
+
+浏览器打开 `http://localhost:8765/`。入口 `index.html`；也可直接打开文件，建议 HTTP 服务以避免不同浏览器的本地文件限制。当前执行环境预览服务也是 8765，宿主/远端是否可访问取决于端口映射，不提供虚构公网 URL。
+
+## 功能
+
+五人队 vs 凋灵、晶簇 vs 营火/钓竿、1v1、团队战；自由增删队员。物理反弹、质量击退、HP、技能弹幕、治疗/灼烧/拉拽、伤害数字、粒子、音效、事件日志。播放/暂停、1/2/4 倍速、种子重播、镜头追踪和震动开关。角色编辑、图片/SVG 上传、完整 JSON 导入导出与本地缓存。
+
+点击图鉴卡片编辑角色。队伍选择器允许同一角色多次参赛。配置变更后点「开始对决」或「重播」生效。导入替换当前图鉴/阵容，先导出备份。音效须手动开启，受浏览器用户交互限制。
+
+详细研究、数值与导入边界见 `RESEARCH.md`。
+
+## 验证
+
+```sh
+node --check engine.js
+node --check app.js
+node --test tests/engine.test.cjs
+# Python playwright 已安装且有 Chromium 时；需先运行上面的预览服务
+python tests/browser_test.py
+```
+
+测试包含固定种子确定性、碰撞与重甲、技能事件、输入校验、JSON 往返；浏览器覆盖编辑、上传 SVG、导入、暂停、倍速、缓存、移动布局等。测试截图 `preview-desktop.png` / `preview-mobile.png`，真实结果见 `validation.txt`。
+
+## 部署交接
+
+静态项目，无构建步骤，源文件即构建产物。GitHub Pages 等静态托管只需发布 `index.html`, `style.css`, `engine.js`, `app.js`, `RESEARCH.md`（可附 `example.json`）。路径使用相对引用，支持子路径。无需密钥或环境变量。本代理未进行发布；由主控安排专用部署代理。预览端口不是永久公网发布。
+
+## 限制
+
+专用圆形刚体模型，不支持多边形装备真实接触形状、用户代码技能、视频录制与录像时间轴。战斗规则为原创，不是作者数据提取。浏览器卡顿时逐步模拟会慢于墙钟时间以保证稳定，不用于竞技权威服务器。
